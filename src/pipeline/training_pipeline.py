@@ -4,12 +4,16 @@ from src.logger import logging
 
 
 from src.components.data_ingestion import DataIngestion
-from src.entity.config_entity import DataIngestionConfig
-from src.entity.artifact_entity import DataIngestionArtifact
+from src.components.data_validation import DataValidation
+from src.entity.config_entity import (DataIngestionConfig,
+                                       DataValidationConfig)
+from src.entity.artifact_entity import (DataIngestionArtifact, 
+                                        DataValidationArtifact)
 
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
+        self.data_validation_config = DataValidationConfig()
 
 
 
@@ -22,13 +26,29 @@ class TrainPipeline:
         except Exception as e:
             raise CustomException(e, sys)
         
+    def start_data_validation(self, data_ingestion_artifact: DataIngestionArtifact) -> DataValidationArtifact:
 
-    def run_pipeline(self):
+        try:
+            data_validation = DataValidation(data_ingestion_artifact = data_ingestion_artifact,
+                                             data_validation_config=self.data_validation_config)
+            logging.info("Entered the data validation of training pipeline class")
+            data_validation_artifact = data_validation.initiate_data_validation()
+
+            logging.info(
+                "performed the data validation and exited the training pipeline class"
+            )
+            return data_validation_artifact
+        except Exception as e:
+            raise CustomException(e,sys)
+        
+
+    def run_pipeline(self,) -> None:
         """This method of trainingpipeline class is responsible for running complete pipeline
         """
 
         try:
             data_ingestion_artifact = self.start_data_ingestion()
+            data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
 
         except Exception as e:
             raise CustomException(e,sys)

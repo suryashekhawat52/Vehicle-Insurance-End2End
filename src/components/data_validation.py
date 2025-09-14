@@ -32,6 +32,7 @@ class DataValidation:
         try:
             status = len(dataframe.columns) == len(self.schema_config['columns'])
             logging.info(f"Is required columns presend {status}")
+            logging.info(f"lenth of columns present {len(dataframe.columns)}")
             return status
         except Exception as e:
             raise CustomException(e,sys)

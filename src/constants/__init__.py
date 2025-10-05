@@ -20,8 +20,6 @@ FILE_NAME: str = "data.csv"
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
 SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
-
-
 AWS_ACCESS_KEY_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
 AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_SECRET_ACCESS_KEY"
 REGION_NAME = "us-east-1"
@@ -53,7 +51,7 @@ DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR: str = "transformed_object"
 Model trainer constants starts with MODEL TRAINER
 """
 MODEL_TRAINER_DIR_NAME: str = "model_trainer"
-MODEL_TRAINER_TRAINED_DIR_NAME:str = "tained_model"
+MODEL_TRAINER_TRAINED_DIR_NAME:str = "trained_model"
 MODEL_TRAINER_TRAINED_MODEL_NAME:str = "model.pkl"
 MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config", "model.yaml")
@@ -63,3 +61,13 @@ MODEL_TRAINER_MIN_SAMPLES_LEAF: int = 4
 MIN_SAMPLES_SPLIT_MAX_DEPTH: int = 10
 MIN_SAMPLES_SPLIT_CRITERION: str = 'entropy'
 MIN_SAMPLES_SPLIT_RANDOM_STATE: int = 101
+
+"""
+MODEL EVALUATION related constants
+"""
+MODEL_EVALUATION_CHANGED_THRESOLD_SCORE:float = 0.02
+MODEL_BUCKET_NAME ="my-model-mlopsproj"
+MODEL_PUSHER_S3_KEY = "model-registry"
+
+APP_HOST = "0.0.0.0"
+APP_PORT = 5000

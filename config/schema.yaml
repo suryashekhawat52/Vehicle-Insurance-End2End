@@ -1,5 +1,4 @@
 columns:
-  - id: int
   - Gender: category
   - Age: int
   - Driving_License: int
@@ -31,10 +30,18 @@ categorical_columns:
 drop_columns: _id
 
 # for data transformation
-num_features:
+std_columns:
   - Age
   - Vintage
 
-
 mm_columns:
   - Annual_Premium
+
+ohe_columns:
+  - Gender
+  - Vehicle_Age
+  - Vehicle_Damage
+
+target_encode_columns:
+  - Policy_Sales_Channel
+  - Region_Code
